@@ -17,7 +17,6 @@ function Barrier:Update(dt)
 
 	if self.lastUpdate > 0.5 then
 		self.position = self.position + self.dir
-
 		local wall = Map.CollidesWith("wall", self.position)
 		local door = Map.CollidesWith("door", self.position)
 
@@ -25,6 +24,9 @@ function Barrier:Update(dt)
 			if wall and not wall.penetrable or door then
 				self.dir = -1 * self.dir
 			end
+		end
+		if player.position:dist(self.position) < Globals.TILE_SIZE
+			--reset
 		end
 	end
 end
