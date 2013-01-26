@@ -4,7 +4,7 @@ require('Tile')
 
 Floor = Class{inherits = Tile,
 	function (self, x, y, id)
-		local img = Globals.IMAGE_DIR .. "floor.png"
+		local img = Globals.IMAGE_DIR .. "floor_0.png"
 		Tile.construct(self, img, Vector2D(x, y), "floor")
 	end
 }
