@@ -1,7 +1,19 @@
--- Typical LOVE Functions you'll use, a few other also exist
+require("Barrier")
+require("BarrierDestroyer")
+require("Consumable")
+require("Door")
+require("Floor")
+require("Globals")
+require("Key")
+require("Level")
+require("Map")
+require("Player")
+require("Tile")
+require("Wall")
 
 function love.load()
     -- Load everything you need!
+    player = Player("img/player.png", Vector2D(100, 100))
 end
 
 function love.update(dt)

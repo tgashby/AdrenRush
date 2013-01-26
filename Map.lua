@@ -10,8 +10,8 @@ function Map.GenerateLevel(levelFile)
 	local levelData = love.image.newImageData(levelFile)
 	local level = Level()
 
-	for x = 0, Globals.SCREEN_WIDTH, Globals.TILE_SIZE do
-		for y = 0, Globals.SCREEN_HEIGHT, Globals.TILE_SIZE do
+	for x = 0, Globals.SCREEN_WIDTH_TILES do
+		for y = 0, Globals.SCREEN_HEIGHT_TILES do
 			local r, g, b, a = levelData:getPixel(x, y)
 
 			if r == 0 and g == 0 then
@@ -44,11 +44,11 @@ function Map.GenerateLevel(levelFile)
 		print("NO STARTING TILE")
 	end
 
-	if not level.end then
+	if not level.ending then
 		print("NO ENDING TILE")
 	end
 
-	Map.levels[#Map.levels + 1]
+	Map.levels[#Map.levels + 1] = level
 end
 
 function Map.CollidesWith(type, objectPos)

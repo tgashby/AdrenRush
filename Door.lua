@@ -10,8 +10,8 @@ Door = Class{inherits = Tile,
 }
 
 
-function Door::WillOpen(keyVal)
-   if keyVal == self.keyVal
+function Door:WillOpen(keyVal)
+   if keyVal == self.keyVal then
       return true
      else
       return false

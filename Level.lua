@@ -6,7 +6,7 @@ Level = Class{
 	function (self)
 		self.tiles = {}
 		self.beginning = nil
-		self.end = nil
+		self.ending = nil
 		self.Spawn = {
 			wall = function (x, y, id)
 				self.tiles[#self.tiles + 1] = Wall(x, y, id)
@@ -33,7 +33,7 @@ Level = Class{
 				self.beginning = Vector2D(x, y)
 			end,
 			ending = function (x, y, id)
-				self.end = Vector2D(x, y)
+				self.ending = Vector2D(x, y)
 			end
 		}
 	end
