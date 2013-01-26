@@ -2,13 +2,11 @@ local Class = require('hump.class')
 local Vector2D = require('hump.vector')
 
 Door = Class{inherits = Tile,
-    function(self, img, pos, keyVal)
-      Tile.construct(self, img, pos)
-      
+  function(self, img, pos, keyVal)
+    Tile.construct(self, img, pos)
       self.keyVal = keyVal
-      
-    end
-  }
+  end
+}
 
 
 function Door::WillOpen(keyVal)
@@ -17,6 +15,4 @@ function Door::WillOpen(keyVal)
      else
       return false
   end
-   
-   
-  end
+end
