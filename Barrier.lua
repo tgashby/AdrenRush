@@ -4,7 +4,7 @@ require('Tile')
 
 Barrier = Class{inherits = Tile,
 	function (self, x, y, id)
-		local img = Globals.IMAGE_DIR .. "barrier.png"
+		local img = Globals.IMAGE_DIR .. "barrier_Phase1.png"
 		Tile.construct(self, img, Vector2D(x, y), "barrier")
 
 		self.dir = id == 1 and Vector2D(0, -1) or Vector2D(-1, 0)

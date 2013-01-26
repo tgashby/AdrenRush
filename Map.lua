@@ -24,7 +24,7 @@ function Map.GenerateLevel(levelFile)
 			elseif g == 0 and b == 255 then
 				level:AddTile(tileX, tileY, r, "door")
 			elseif g == 255 and b == 0 then
-				level:AddTile(tileX, tileY, r, "ketileY")
+				level:AddTile(tileX, tileY, r, "key")
 			elseif r == 255 and g == 0 then
 				level:AddTile(tileX, tileY, b, "consumable")
 			elseif r == 255 and g == 255 then

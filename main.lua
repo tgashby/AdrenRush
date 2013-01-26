@@ -12,6 +12,7 @@ require("Overlay")
 require("Map")
 require("Player")
 require("Tile")
+require("Part")
 require("Wall")
 
 function love.load()
@@ -28,7 +29,7 @@ end
 
 function love.draw()
     Map.Draw()
-    overlay:Draw()
+    -- overlay:Draw()
     player:Draw()
 end
 
