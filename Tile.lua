@@ -2,13 +2,14 @@ local Class = require('hump.class')
 local Vector2D = require('hump.vector')
 
 Tile = Class{
-    function(self, img, pos) 
+    function(self, img, pos, type) 
         self.image = img
         self.position = pos
+        self.type = type
     end
 }
 
 function Tile:Draw()
-    love.graphics.draw(self.image, self.bounds.x, self.bounds.y)
+    love.graphics.draw(self.image, self.position.x, self.position.y)
 end
 

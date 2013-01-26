@@ -2,10 +2,11 @@ local Vector2D = require('hump.vector')
 require('Tile')
 
 Map = {
-	levels = {}
+	levels = {},
+	currentLevel = 1
 }
 
-function Map:GenerateLevel(levelFile)
+function Map.GenerateLevel(levelFile)
 	local levelData = love.image.newImageData(levelFile)
 	local level = Level()
 
@@ -15,6 +16,8 @@ function Map:GenerateLevel(levelFile)
 
 			if r == 0 and g == 0 then
 				level.AddTile(x, y, b, "wall")
+			elseif r == 255 and g == 255 and b == 255 then
+				level.AddTile(x, y, r, "floor")
 			elseif g == 0 and b == 255 then
 				level.AddTile(x, y, r, "door")
 			elseif g == 255 and b == 0 then
@@ -45,5 +48,10 @@ function Map:GenerateLevel(levelFile)
 		print("NO ENDING TILE")
 	end
 
-	self.levels[#self.levels + 1]
+	Map.levels[#Map.levels + 1]
+end
+
+function Map.CollidesWith(type, objectPos)
+	return Map.levels[currentLevel].tiles[objectPos.y / Globals.SCREEN_WIDTH_TILES - objectPos.y % 
+		Globals.TILE_SIZE - 1 + (objectPos.x / Globals.SCREEN_WIDTH_TILES - objectPos.x)].type == type
 end
