@@ -12,13 +12,10 @@ Consumable = Class{inherits = Tile,
     	end
 
       	Tile.construct(self, img, Vector2D(x, y), "consumable")
-      	self.heartAccel = heartAccel
+      	self.heartAccel = amount
 	end
 }
    
 function Consumable:UseConsumable()
  	player.heartRate = player.heartRate + self.heartAccel
 end
-   
-   
-   

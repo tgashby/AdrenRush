@@ -16,7 +16,7 @@ require("Wall")
 
 function love.load()
     -- Load everything you need!
-    Map.GenerateLevel(Globals.LEVELS_DIR .. "basic.png")
+    Map.GenerateLevel(Globals.LEVELS_DIR .. "levele1.png")
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
     overlay = Overlay()
 end
