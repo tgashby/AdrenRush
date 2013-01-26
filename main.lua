@@ -8,6 +8,7 @@ require("Floor")
 require("Globals")
 require("Key")
 require("Level")
+require("Overlay")
 require("Map")
 require("Player")
 require("Tile")
@@ -17,19 +18,17 @@ function love.load()
     -- Load everything you need!
     Map.GenerateLevel(Globals.LEVELS_DIR .. "basic.png")
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
-    overlay = love.graphics.newImage(Globals.IMAGE_DIR .. "overlay.png")
+    overlay = Overlay()
 end
 
 function love.update(dt)
-    -- Called as often as possible
-    -- dt is the time, in seconds, since update was last called
     Timer.update(dt)
+    player:Update(dt)
 end
 
 function love.draw()
     Map.Draw()
-    love.graphics.draw(overlay, player.position.x - overlay:getWidth() / 2 + player.image:getWidth() / 2, 
-        player.position.y - overlay:getHeight() / 2 + player.image:getHeight() / 2, 0, 1, 1)
+    overlay:Draw()
     player:Draw()
 end
 
@@ -60,10 +59,3 @@ function love.keyreleased(key, unicode)
       love.event.push("quit")
     end
 end
-
-function HeartBeat()
-    player:Move()
-    Timer.add(player.heartRate / 60, HeartBeat)
-end
-
-Timer.add(2, HeartBeat)

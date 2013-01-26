@@ -30,7 +30,7 @@ function Map.GenerateLevel(levelFile)
 			elseif r == 255 and g == 255 then
 				level:AddTile(tileX, tileY, b, "barrier")
 			elseif g == 255 and b == 255 then
-				level:AddTile(tileX, tileY, r, "barrierdestrotileYer")
+				level:AddTile(tileX, tileY, r, "barrierdestroyer")
 			elseif r == 255 and b == 255 then
 				level:AddTile(tileX, tileY, g, "part")
 			elseif r == 201 and g == 201 and b == 201 then

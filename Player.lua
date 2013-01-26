@@ -9,12 +9,28 @@ Player = Class {inherits = Tile,
         self.directions = {up = 0, left = -1, right = 1, down = 2}
         self.nextDir = ""
         self.heartRate = 60
+        self.beatPercent = 0
+        self.beatIncreaseTimer = 0
     end
 }
 
 function Player:Draw()
     love.graphics.draw(self.image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
         self.image:getWidth() / 2, self.image:getHeight() / 2)
+end
+
+function Player:Update(dt)
+    self.beatPercent = self.beatPercent + self.heartRate * dt / 60
+    self.beatIncreaseTimer = self.beatIncreaseTimer + dt
+
+    if self.beatPercent >= 1 then
+        self:Move()
+        self.beatPercent = 0
+    end
+
+    if self.beatIncreaseTimer > 1 then
+        self.heartRate = self.heartRate + 1
+    end
 end
 
 function Player:Move()
