@@ -34,18 +34,7 @@ end
 
 function love.keyreleased(key, unicode)
     -- I think you get it by now
-end
-
-function love.focus(f)
-    -- Called whenever the user clicks on or off the LOVE window
-    -- f - boolean of whether focus gained or lost
-    if f then
-        print("LOVE Window now in focus!")
-    else
-        print("LOVE Window lost focus :-(")
+    if key == "escape" then
+      love.event.push("quit")
     end
-end
-
-function love.quit()
-    -- Called right before the LOVE application exits
 end
