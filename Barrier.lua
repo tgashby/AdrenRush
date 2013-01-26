@@ -4,8 +4,8 @@ require('Tile')
 
 Barrier = Class{inherits = Tile,
 	function (self, x, y, id)
-		local img = love.graphics.newImage("barrier.png")
-		Tile.construct(img, Vector2D(x, y), "barrier")
+		local img = Globals.IMAGE_DIR .. "barrier.png"
+		Tile.construct(self, img, Vector2D(x, y), "barrier")
 
 		self.dir = id == 1 and Vector2D(0, -1) or Vector2D(-1, 0)
 		self.lastUpdate = 0
@@ -19,9 +19,10 @@ function Barrier:Update(dt)
 		self.position = self.position + self.dir
 
 		local wall = Map.CollidesWith("wall", self.position)
+		local door = Map.CollidesWith("door", self.position)
 
-		if wall then
-			if not wall.penetrable then
+		if wall or door then
+			if wall and not wall.penetrable or door then
 				self.dir = -1 * self.dir
 			end
 		end

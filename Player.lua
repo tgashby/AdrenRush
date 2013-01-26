@@ -13,19 +13,31 @@ Player = Class {inherits = Tile,
 }
 
 function Player:Draw()
-    love.graphics.draw(self.img, self.position.x, self.position.y, math.rad(90 * self.directions[self.dir]))
+    love.graphics.draw(self.image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
+        self.image:getWidth() / 2, self.image:getHeight() / 2)
 end
 
 function Player:Move()
     if self.nextDir ~= "" then
-        if dir == "up" then
-            self.position.y = self.position.y - Globals.TILE_SIZE
-        elseif dir == "left" then
-            self.position.x = self.position.x - Globals.TILE_SIZE        
-        elseif dir == "right" then
-            self.position.x = self.position.x + Globals.TILE_SIZE
+        if self.nextDir == "up" then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) then
+                self.position.y = self.position.y - Globals.TILE_SIZE
+            end
+        elseif self.nextDir == "left" then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y)) then
+                self.position.x = self.position.x - Globals.TILE_SIZE
+            end
+        elseif self.nextDir == "right" then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) then
+                self.position.x = self.position.x + Globals.TILE_SIZE
+            end
         else
-            self.position.y = self.position.y + Globals.TILE_SIZE
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) then
+                self.position.y = self.position.y + Globals.TILE_SIZE
+            end
         end
+
+        self.dir = self.nextDir
+        self.nextDir = ""
     end
 end

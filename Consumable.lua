@@ -3,12 +3,12 @@ local Vector2D = require('hump.vector')
 
 Consumable = Class{inherits = Tile,
     function(self, x, y, amount)
-    	local img = nil
+    	local img = Globals.IMAGE_DIR
 
     	if amount < 100 then
-    		img = love.graphics.newImage("upper_" .. amount .. ".png")
+    		img = "upper_" .. amount .. ".png"
     	else
-    		img = love.graphics.newImage("downer_" .. amount - 100 .. ".png")
+    		img = "downer_" .. amount - 100 .. ".png"
     	end
 
       	Tile.construct(self, img, Vector2D(x, y), "consumable")

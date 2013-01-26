@@ -4,8 +4,8 @@ require('Tile')
 
 BarrierDestroyer = Class{inherts = Tile,
 	function (self, x, y, id)
-		local img = love.graphics.newImage("barrier_destroyer.png")
+		local img = Globals.IMAGE_DIR .. "barrier_destroyer.png"
 
-		Tile.construct(img, Vector2D(x, y), "barrierdestroyer")
+		Tile.construct(self, img, Vector2D(x, y), "barrierdestroyer")
 	end
 }
