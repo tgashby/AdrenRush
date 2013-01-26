@@ -4,7 +4,7 @@ require('Tile')
 
 Player = Class {inherits = Tile,
     function(self, img, pos) 
-        Tile.construct(self, img, pos)
+        Tile.construct(self, img, pos, "player")
         self.dir = "up"
         self.directions = {up = 0, left = -1, right = 1, down = 2}
         self.nextDir = ""

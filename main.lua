@@ -17,6 +17,7 @@ function love.load()
     -- Load everything you need!
     Map.GenerateLevel(Globals.LEVELS_DIR .. "basic.png")
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
+    overlay = love.graphics.newImage(Globals.IMAGE_DIR .. "overlay.png")
 end
 
 function love.update(dt)
@@ -27,6 +28,8 @@ end
 
 function love.draw()
     Map.Draw()
+    love.graphics.draw(overlay, player.position.x - overlay:getWidth() / 2 + player.image:getWidth() / 2, 
+        player.position.y - overlay:getHeight() / 2 + player.image:getHeight() / 2, 0, 1, 1)
     player:Draw()
 end
 
