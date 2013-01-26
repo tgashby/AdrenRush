@@ -28,8 +28,9 @@ function Player:Update(dt)
         self.beatPercent = 0
     end
 
-    if self.beatIncreaseTimer > 1 then
+    if self.beatIncreaseTimer > 2 then
         self.heartRate = self.heartRate + 1
+        self.beatIncreaseTimer = 0
     end
 end
 

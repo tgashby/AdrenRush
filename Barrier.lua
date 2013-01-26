@@ -25,7 +25,7 @@ function Barrier:Update(dt)
 				self.dir = -1 * self.dir
 			end
 		end
-		if player.position:dist(self.position) < Globals.TILE_SIZE
+		if player.position:dist(self.position) < Globals.TILE_SIZE then
 			--reset
 		end
 	end
