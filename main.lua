@@ -1,3 +1,5 @@
+Timer = require("hump.timer")
+
 require("Barrier")
 require("BarrierDestroyer")
 require("Consumable")
@@ -20,6 +22,7 @@ end
 function love.update(dt)
     -- Called as often as possible
     -- dt is the time, in seconds, since update was last called
+    Timer.update(dt)
 end
 
 function love.draw()
@@ -53,6 +56,11 @@ function love.keyreleased(key, unicode)
     if key == "escape" then
       love.event.push("quit")
     end
-
-    player:Move()
 end
+
+function HeartBeat()
+    player:Move()
+    Timer.add(player.heartRate / 60, HeartBeat)
+end
+
+Timer.add(2, HeartBeat)

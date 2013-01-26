@@ -4,6 +4,6 @@ Globals = {
 	SCREEN_HEIGHT_TILES = 24,
 	SCREEN_WIDTH = 1024,
 	SCREEN_HEIGHT = 768,
-	IMAGE_DIR = "img/",
+	IMAGE_DIR = "Images/",
 	LEVELS_DIR = "Levels/"
 }
