@@ -47,9 +47,12 @@ function Player:Draw()
     love.graphics.draw(image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
         self.image:getWidth() / 2, self.image:getHeight() / 2)
 	if self.showInvent then
-		for i, v in tempInventory do
-			local img = Globals.IMAGE_DIR .. "part_" .. i .. ".png"
-			love.grapics.draw(image, 32 + 48 * i, 64)
+		for i, v in ipairs(self.tempInventory) do
+			if self.tempInventory[i] then
+				local img = Globals.IMAGE_DIR .. "part_" .. i .. ".png"
+				local image = love.graphics.newImage(img)
+				love.graphics.draw(image, 32 + 48 * i, 64)
+			end
 		end
 	end
 end
@@ -74,7 +77,9 @@ function Player:Update(dt)
 			key:useKey()
 		end
 		if self.position == Map.levels[Map.currentLevel].ending then
-			self.inventory = self.tempInventory
+			for i, v in ipairs(self.tempInventory) do
+				self.inventory[i] = v
+			end
 			Map.nextLevel()
 		end
         self.beatPercent = 0
@@ -132,7 +137,9 @@ function Player:Move()
 end
 
 function Player:Reset()
-	self.tempInventory = self.inventory
+	for i, v in ipairs(self.inventory) do
+		self.tempInventory[i] = v
+	end
     self.heartRate = 60
     self.beatPercent = 0
     self.beatIncreaseTimer = 0
