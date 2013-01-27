@@ -1,7 +1,5 @@
 local GameState = require "hump.gamestate"
 
-require("WinState")
-require("LoseState")
 require("Barrier")
 require("BarrierDestroyer")
 require("Consumable")
@@ -19,6 +17,8 @@ require("Wall")
 require("arrow")
 
 local PlayState = GameState.new()
+local WinState = require("WinState")
+local LoseState = require("LoseState")
 
 function PlayState:init()	
 	coalitionFont = love.graphics.newFont("Coalition_v2.ttf", 14)
@@ -63,6 +63,21 @@ function PlayState:update(dt)
     if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
         player.nextDir = "down"
     end
+
+    if player.lives <= 0 then
+    	GameState.switch(LoseState)
+    end
+
+    local partsCollected = 0
+    for i,v in ipairs(player.inventory) do
+    	if v then
+    		partsCollected = partsCollected + 1
+    	end
+    end
+
+    if partsCollected >= 6 then
+    	GameState.switch(WinState)
+    end
 end
 
 function PlayState:draw()
@@ -74,6 +89,7 @@ function PlayState:draw()
     love.graphics.setFont(coalitionFont)
     love.graphics.setColor(255, 0, 0, 255)
     love.graphics.print(player.heartRate .. " / 240 BPM", 880, 740)
+    love.graphics.print("Lives: " .. player.lives, 10, 10)
     love.graphics.setColor(255, 255, 255, 255)
 end
 
