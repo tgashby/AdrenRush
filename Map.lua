@@ -64,10 +64,14 @@ function Map.Draw()
 	Map.levels[Map.currentLevel]:Draw()	
 end
 
+function Map.openDoors(id)
+	Map.levels[Map.currentLevel]:openDoors(id)
+end
+
 function Map.Update(dt)
 	Map.levels[Map.currentLevel]:Update(dt)
 end
 
 function Map.Reset()
-	Map.generateLevel(Map.file)
+	Map.GenerateLevel(Map.file)
 end

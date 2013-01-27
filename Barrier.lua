@@ -43,8 +43,8 @@ function Barrier:Update(dt)
 			end
 		end
 
-		if player.position:dist(self.position) < Globals.TILE_SIZE then
-			Map.reset()
+		if player.position:dist(self.position) < Globals.TILE_SIZE * 3 / 4 then
+			Map:Reset()
 		end
 	end
 end
