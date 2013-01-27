@@ -13,7 +13,6 @@ Player = Class {inherits = Tile,
         self.beatIncreaseTimer = 0
         self.leftHandForward = false
         self.altImage = love.graphics.newImage(Globals.IMAGE_DIR .. "player_2.png")
-		self.inventory = {} 
 		self.heartSound = love.audio.newSource("Music/pulse1.wav")
 		self.inventory = {
 			false,
@@ -62,6 +61,7 @@ function Player:Update(dt)
     if self.beatPercent >= 1 then
         self:Move()
 		love.audio.newSource("Music/pulse1.wav", "static"):play()
+        print(self.position)
         onPart, part = Map.CollidesWith("part", self.position)
 		if onPart then
 			part:usePart()
@@ -76,7 +76,7 @@ function Player:Update(dt)
 		end
 		if self.position == Map.levels[Map.currentLevel].ending then
 			self.inventory = self.tempInventory
-			Map:nextLevel()
+			Map.nextLevel()
 		end
         self.beatPercent = 0
 		
@@ -87,8 +87,9 @@ function Player:Update(dt)
         self.beatIncreaseTimer = 0
 		
     end
+
 	if self.heartRate > 240 then
-		Map:Reset()
+		Map.Reset()
 	end
 end
 
@@ -127,7 +128,8 @@ function Player:Move()
         self.dir = self.nextDir
         self.nextDir = ""
     else
-	Map.Reset()
+        print("Map Reset!")
+	   Map.Reset()
 	end
 end
 
