@@ -18,6 +18,10 @@ require("Wall")
 function love.load()
     -- Load everything you need!
     Map.GenerateLevel(Globals.LEVELS_DIR .. "levele1.png")
+	music = love.audio.newSource("Music/Adr loop NO PULSE.wav")
+	music:setLooping(true)
+	music:setVolume(.3)
+	love.audio.play(music)
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
     overlay = Overlay()
 	inventory = {
@@ -32,6 +36,7 @@ function love.load()
 		i9 = false,
 		i10 = false
 	}
+
 end
 
 function love.update(dt)
