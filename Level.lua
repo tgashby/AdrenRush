@@ -56,3 +56,14 @@ function Level:Draw()
         -- love.graphics.setColor(255, 255, 255, 255)
     end
 end
+function Level:Update(dt)
+    print(dt)
+    for i,v in ipairs(self.tiles) do
+        if v.Update then
+            v:Update(dt)
+        end
+        -- love.graphics.setColor(0, 255, 0, 255)
+        -- love.graphics.print(tostring(i), v.position.x, v.position.y)
+        -- love.graphics.setColor(255, 255, 255, 255)
+    end
+end
