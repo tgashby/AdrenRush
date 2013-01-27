@@ -8,6 +8,7 @@ Player = Class {inherits = Tile,
         self.dir = "up"
         self.directions = {up = 0, left = -1, right = 1, down = 2}
         self.nextDir = ""
+        self.lives = 10
         self.heartRate = 60
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
@@ -137,6 +138,10 @@ function Player:Move()
         self.nextDir = ""
     else
 	   Map.Reset()
+	   self.lives = self.lives - 1
+		if self.position == Map.levels[Map.currentLevel].beginning then
+			self.lives = self.lives + 1
+		end
 	end
     
    self.leftHandForward = not self.leftHandForward
