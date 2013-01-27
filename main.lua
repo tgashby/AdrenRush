@@ -20,6 +20,18 @@ function love.load()
     Map.GenerateLevel(Globals.LEVELS_DIR .. "levele1.png")
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
     overlay = Overlay()
+	inventory = {
+		door = false,
+		spark_plug = false,
+		radio = false,
+		controls = false,
+		hula = false,
+		rocket = false,
+		fuel = false,
+		ac = false,
+		battery = false,
+		food = false
+	}
 end
 
 function love.update(dt)

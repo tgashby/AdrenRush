@@ -11,6 +11,7 @@ Player = Class {inherits = Tile,
         self.heartRate = 60
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
+		self.inventory = main.inventory
     end
 }
 
@@ -25,6 +26,13 @@ function Player:Update(dt)
 
     if self.beatPercent >= 1 then
         self:Move()
+		if onPart then
+			part:usePart()
+		end
+		onCons, cons = Map.CollidesWith("consumable", self.position)
+		if onCons then
+			cons:useConsumable()
+		end
         self.beatPercent = 0
     end
 
