@@ -73,5 +73,8 @@ function Map.Update(dt)
 end
 
 function Map.Reset()
-	Map.GenerateLevel(Map.file)
+	local filename = Map.file
+	table.remove(Map.levels, Map.currentLevel)
+	Map.GenerateLevel(filename)
+	player.position = Map.levels[Map.currentLevel].beginning
 end
