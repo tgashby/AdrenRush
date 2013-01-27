@@ -26,6 +26,7 @@ function Player:Update(dt)
 
     if self.beatPercent >= 1 then
         self:Move()
+        onPart, part = Map.CollidesWith("part", self.position)
 		if onPart then
 			part:usePart()
 		end
