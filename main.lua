@@ -59,6 +59,7 @@ function love.load()
 		false
 	}
 	arrow = Arrow()
+	exitImage = love.graphics.newImage(Globals.IMAGE_DIR .. "exit.png")
 end
 
 function love.update(dt)
@@ -71,6 +72,7 @@ function love.draw()
     Map.Draw()
     overlay:Draw()
 	arrow:Draw()
+	love.graphics.draw(exitImage, Map.levels[Map.currentLevel].ending.x, Map.levels[Map.currentLevel].ending.y) 
     player:Draw()
 end
 
