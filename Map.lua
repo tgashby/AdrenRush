@@ -8,7 +8,7 @@ Map = {
 
 function Map.GenerateLevel(levelFile)
 	local levelData = love.image.newImageData(levelFile)
-	local level = Level()
+	local level = Level(levelFile)
 	Map.file = levelFile
 	for y = 0, Globals.SCREEN_HEIGHT_TILES - 1 do
 		for x = 0, Globals.SCREEN_WIDTH_TILES - 1 do

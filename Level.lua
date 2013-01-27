@@ -3,7 +3,8 @@ local Vector2D = require('hump.vector')
 require('Tile')
 
 Level = Class{
-    function (self)
+    function (self, levelFile)
+        self.levelFile = levelFile
         self.tiles = {}
         self.barriers = {}
         self.beginning = nil

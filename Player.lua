@@ -61,7 +61,6 @@ function Player:Update(dt)
     if self.beatPercent >= 1 then
         self:Move()
 		love.audio.newSource("Music/pulse1.wav", "static"):play()
-        print(self.position)
         onPart, part = Map.CollidesWith("part", self.position)
 		if onPart then
 			part:usePart()
@@ -128,7 +127,6 @@ function Player:Move()
         self.dir = self.nextDir
         self.nextDir = ""
     else
-        print("Map Reset!")
 	   Map.Reset()
 	end
 end
