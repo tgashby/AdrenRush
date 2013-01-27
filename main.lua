@@ -66,6 +66,22 @@ function love.update(dt)
     Timer.update(dt)
     player:Update(dt)
     Map.Update(dt)
+
+    if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+        player.nextDir = "up"
+    end
+
+    if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
+        player.nextDir = "left"
+    end
+
+    if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
+        player.nextDir = "right"
+    end
+
+    if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+        player.nextDir = "down"
+    end
 end
 
 function love.draw()
@@ -80,21 +96,7 @@ function love.keypressed(key, unicode)
     -- Called when a key is pressed
     -- key - 'a', 'b', etc, list available at https://love2d.org/wiki/KeyConstant
     -- unicode - the unicode value of the key pressed
-    if key == "w" or key == "up" then
-        player.nextDir = "up"
-    end
-
-    if key == "a" or key == "left" then
-        player.nextDir = "left"
-    end
-
-    if key == "d" or key == "right" then
-        player.nextDir = "right"
-    end
-
-    if key == "s" or key == "down" then
-        player.nextDir = "down"
-    end
+    
 	if key == " " then
 		player.showInvent = true
 	end
