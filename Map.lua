@@ -67,7 +67,7 @@ function Map.nextLevel()
 end
 
 function Map.Draw()
-	Map.levels[Map.currentLevel]:Draw()	
+	Map.levels[Map.currentLevel]:Draw()
 end
 
 function Map.openDoors(id)
@@ -79,7 +79,7 @@ function Map.Update(dt)
 end
 
 function Map.Reset()
-	local filename = Map.file
+	local filename = Map.levels[Map.currentLevel].levelFile
 	table.remove(Map.levels, Map.currentLevel)
 	Map.GenerateLevel(filename)
 	table.insert(Map.levels, Map.currentLevel, Map.levels[#Map.levels])
