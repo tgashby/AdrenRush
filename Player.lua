@@ -21,17 +21,9 @@ Player = Class {inherits = Tile,
 			false,
 			false,
 			false,
-			false,
-			false,
-			false,
-			false,
 			false
 		}
 		self.tempInventory = {
-			false,
-			false,
-			false,
-			false,
 			false,
 			false,
 			false,
