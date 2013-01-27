@@ -11,6 +11,8 @@ Player = Class {inherits = Tile,
         self.heartRate = 60
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
+        self.leftHandForward = false
+        self.altImage = love.graphics.newImage(Globals.IMAGE_DIR .. "player_2.png")
 		self.inventory = {} 
 		self.heartSound = love.audio.newSource("Music/pulse1.wav")
 		self.inventory = {
@@ -41,7 +43,8 @@ Player = Class {inherits = Tile,
 }
 
 function Player:Draw()
-    love.graphics.draw(self.image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
+    local image = self.leftHandForward and self.image or self.altImage
+    love.graphics.draw(image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
         self.image:getWidth() / 2, self.image:getHeight() / 2)
 end
 

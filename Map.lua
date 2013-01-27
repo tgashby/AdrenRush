@@ -38,20 +38,17 @@ function Map.GenerateLevel(levelFile)
 			elseif r == 255 and g == 220 and b == 220 then
 				level:AddTile(tileX, tileY, r, "ending")
 			else
-				print(levelfile)
-				print("UNKNOWN PIXEL TYPE: ", r, g, b)
+				print(levelFile, "UNKNOWN PIXEL TYPE: ", r, g, b)
 			end
 		end
 	end
 
 	if not level.beginning then
-		print(levelfile)
-		print("NO STARTING TILE")
+		print(levelFile, "NO STARTING TILE")
 	end
 
 	if not level.ending then
-		print(levelfile)
-		print("NO ENDING TILE")
+		print(levelFile, "NO ENDING TILE")
 	end
 
 	Map.levels[#Map.levels + 1] = level
@@ -85,6 +82,8 @@ function Map.Reset()
 	local filename = Map.file
 	table.remove(Map.levels, Map.currentLevel)
 	Map.GenerateLevel(filename)
+	table.insert(Map.levels, Map.currentLevel, Map.levels[#Map.levels])
+	table.remove(Map.levels, #Map.levels)
 	player.position = Map.levels[Map.currentLevel].beginning
 	player:Reset()
 end
