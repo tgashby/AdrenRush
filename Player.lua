@@ -36,6 +36,10 @@ function Player:Update(dt)
 		if onCons then
 			cons:UseConsumable()
 		end
+		onKey, key = Map.CollidesWith("key", self.position)
+		if onKey then
+			key:useKey()
+		end
         self.beatPercent = 0
 		
     end
@@ -52,21 +56,33 @@ end
 
 function Player:Move()
     if self.nextDir ~= "" then
-        if self.nextDir == "up" then --do multiline if statements work? If so, this looks terrible.
-            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) and not Map.CollidesWith("door", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) then
-                self.position.y = self.position.y - Globals.TILE_SIZE
+        if self.nextDir == "up" then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) then
+				willDoor, door = Map.CollidesWith("door", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE))
+				if not willDoor or willDoor and not door.closed then
+					self.position.y = self.position.y - Globals.TILE_SIZE
+				end
             end
         elseif self.nextDir == "left" then
-            if not Map.CollidesWith("wall", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y)) and not Map.CollidesWith("door", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y))then
-                self.position.x = self.position.x - Globals.TILE_SIZE
+            if not Map.CollidesWith("wall", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y)) then
+				willDoor, door = Map.CollidesWith("door", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y))
+				if not willDoor or willDoor and not door.closed then
+					self.position.x = self.position.x - Globals.TILE_SIZE
+				end
             end
         elseif self.nextDir == "right" then
-            if not Map.CollidesWith("wall", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) and not Map.CollidesWith("door", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) then
-                self.position.x = self.position.x + Globals.TILE_SIZE
+            if not Map.CollidesWith("wall", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) then
+				willDoor, door = Map.CollidesWith("door", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) 
+				if not willDoor or willDoor and not door.closed then
+					self.position.x = self.position.x + Globals.TILE_SIZE
+				end
             end
         else
-            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) and not Map.CollidesWith("door", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) then
-                self.position.y = self.position.y + Globals.TILE_SIZE
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) then
+				willDoor, door = Map.CollidesWith("door", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) 
+				if not willDoor or willDoor and not door.closed then
+					self.position.y = self.position.y + Globals.TILE_SIZE
+				end
             end
         end
 

@@ -12,7 +12,7 @@ Part = Class{inherits = Tile,
 
 function Part:usePart()
 	if not self.used then
-		player.inventory[self.id] = true
+		player.inventory["i" .. self.id] = true
 		self.used = true
 		self.image = love.graphics.newImage(Globals.IMAGE_DIR .. "floor_0.png")
 	end

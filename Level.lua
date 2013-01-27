@@ -50,6 +50,14 @@ function Level:AddTile(x, y, id, name)
     self.Spawn[name](x, y, id)
 end
 
+function Level:openDoors(id)
+	for i,v in ipairs(self.tiles) do
+		if v.open then
+			v:open(id)
+		end
+	end
+end
+
 function Level:Draw()
     local barriers = {}
     for i,v in ipairs(self.tiles) do
