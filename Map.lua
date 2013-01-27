@@ -9,7 +9,7 @@ Map = {
 function Map.GenerateLevel(levelFile)
 	local levelData = love.image.newImageData(levelFile)
 	local level = Level()
-
+	Map.file = levelFile
 	for y = 0, Globals.SCREEN_HEIGHT_TILES - 1 do
 		for x = 0, Globals.SCREEN_WIDTH_TILES - 1 do
 			local r, g, b, a = levelData:getPixel(x, y)
@@ -66,4 +66,8 @@ end
 
 function Map.Update(dt)
 	Map.levels[Map.currentLevel]:Update(dt)
+end
+
+function Map.Reset()
+	Map.generateLevel(Map.file)
 end

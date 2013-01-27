@@ -41,24 +41,27 @@ function Player:Update(dt)
         self.heartRate = self.heartRate + 1
         self.beatIncreaseTimer = 0
     end
+	if self.heartRate > 240 then
+		Map.reset()
+	end
 end
 
 function Player:Move()
     if self.nextDir ~= "" then
-        if self.nextDir == "up" then
-            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) then
+        if self.nextDir == "up" then --do multiline if statements work? If so, this looks terrible.
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) and not Map.CollidesWith("door", Vector2D(self.position.x, self.position.y - Globals.TILE_SIZE)) then
                 self.position.y = self.position.y - Globals.TILE_SIZE
             end
         elseif self.nextDir == "left" then
-            if not Map.CollidesWith("wall", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y)) then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y)) and not Map.CollidesWith("door", Vector2D(self.position.x - Globals.TILE_SIZE, self.position.y))then
                 self.position.x = self.position.x - Globals.TILE_SIZE
             end
         elseif self.nextDir == "right" then
-            if not Map.CollidesWith("wall", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) and not Map.CollidesWith("door", Vector2D(self.position.x + Globals.TILE_SIZE, self.position.y)) then
                 self.position.x = self.position.x + Globals.TILE_SIZE
             end
         else
-            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) then
+            if not Map.CollidesWith("wall", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) and not Map.CollidesWith("door", Vector2D(self.position.x, self.position.y + Globals.TILE_SIZE)) then
                 self.position.y = self.position.y + Globals.TILE_SIZE
             end
         end
