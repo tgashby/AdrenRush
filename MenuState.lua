@@ -28,23 +28,16 @@ end
 
 function Instructions:enter(previous)
     levels = {
+    "levels11.png",
+    "levels12.png",
+    "levels13.png",
     "basic.png", 
     "levele1.png",
     "levele2.png",
-    "levele3.png",
-    "levele3A.png",
     "levele4.png",
     "levele5.png",
     "levele6.png",
     "levele7.png",
-    "levels1.png",
-    "levels2.png",
-    "levels3.png",
-    "levels4.png",
-    "levels5.png",
-    "levels6.png",
-    "levels7.png",
-    "levels8.png"
     }
     for i, v in ipairs(levels) do
        Map.GenerateLevel(Globals.LEVELS_DIR .. v)
