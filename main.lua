@@ -42,7 +42,7 @@ end
 
 function love.draw()
     Map.Draw()
-    --overlay:Draw()
+    overlay:Draw()
     player:Draw()
 end
 

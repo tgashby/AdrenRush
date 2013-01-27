@@ -9,7 +9,6 @@ Player = Class {inherits = Tile,
         self.directions = {up = 0, left = -1, right = 1, down = 2}
         self.nextDir = ""
         self.heartRate = 60
-        self.heartRate = 120
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
 		self.inventory = {} 
