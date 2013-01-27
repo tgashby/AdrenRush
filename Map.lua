@@ -60,6 +60,11 @@ function Map.CollidesWith(type, objectPos)
 	(objectPos.x / Globals.SCREEN_WIDTH_TILES + 1)]
 end
 
+function Map.nextLevel()
+	currentLevel = currentLevel + 1
+	player.position = Map.levels[Map.currentLevel].beginning
+end
+
 function Map.Draw()
 	Map.levels[Map.currentLevel]:Draw()	
 end
@@ -73,5 +78,6 @@ function Map.Update(dt)
 end
 
 function Map.Reset()
+	local filename = Map.file
 	Map.GenerateLevel(Map.file)
 end

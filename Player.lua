@@ -38,15 +38,18 @@ function Player:Update(dt)
 		if onKey then
 			key:useKey()
 		end
+		if Map.CollidesWith("ending", self.position) then
+			Map:nextLevel()
+		end
         self.beatPercent = 0
     end
 
-    if self.beatIncreaseTimer > 2 then
-        self.heartRate = self.heartRate + 1
+    if self.beatIncreaseTimer > 1 then
+        self.heartRate = self.heartRate + 2
         self.beatIncreaseTimer = 0
     end
 	if self.heartRate > 240 then
-		Map.reset()
+		Map:Reset()
 	end
 end
 
