@@ -13,6 +13,30 @@ Player = Class {inherits = Tile,
         self.beatIncreaseTimer = 0
 		self.inventory = {} 
 		self.heartSound = love.audio.newSource("Music/pulse1.wav")
+		self.inventory = {
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false
+		}
+		self.tempInventory = {
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false
+		}
     end
 }
 
@@ -40,7 +64,8 @@ function Player:Update(dt)
 		if onKey then
 			key:useKey()
 		end
-		if Map.CollidesWith("ending", self.position) then
+		if self.position == Map.levels[Map.currentLevel].ending then
+			self.inventory = self.tempInventory
 			Map:nextLevel()
 		end
         self.beatPercent = 0
@@ -95,6 +120,7 @@ function Player:Move()
 end
 
 function Player:Reset()
+	self.tempInventory = self.inventory
     self.heartRate = 60
     self.beatPercent = 0
     self.beatIncreaseTimer = 0

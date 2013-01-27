@@ -43,16 +43,16 @@ function love.load()
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
     overlay = Overlay()
 	inventory = {
-		i1 = false,
-		i2 = false,
-		i3 = false,
-		i4 = false,
-		i5 = false,
-		i6 = false,
-		i7 = false,
-		i8 = false,
-		i9 = false,
-		i10 = false
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
 	}
 	
 end

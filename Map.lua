@@ -38,16 +38,19 @@ function Map.GenerateLevel(levelFile)
 			elseif r == 255 and g == 220 and b == 220 then
 				level:AddTile(tileX, tileY, r, "ending")
 			else
+				print(levelfile)
 				print("UNKNOWN PIXEL TYPE: ", r, g, b)
 			end
 		end
 	end
 
 	if not level.beginning then
+		print(levelfile)
 		print("NO STARTING TILE")
 	end
 
 	if not level.ending then
+		print(levelfile)
 		print("NO ENDING TILE")
 	end
 
@@ -61,8 +64,9 @@ function Map.CollidesWith(type, objectPos)
 end
 
 function Map.nextLevel()
-	currentLevel = currentLevel + 1
+	Map.currentLevel = Map.currentLevel + 1
 	player.position = Map.levels[Map.currentLevel].beginning
+	player:Reset()
 end
 
 function Map.Draw()
