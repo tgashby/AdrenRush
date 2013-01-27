@@ -14,6 +14,7 @@ require("Player")
 require("Tile")
 require("Part")
 require("Wall")
+require("arrow")
 
 function love.load()
     -- Load everything you need!
@@ -54,6 +55,7 @@ function love.load()
 		false,
 		false
 	}
+	arrow = Arrow()
 	
 end
 
@@ -66,6 +68,7 @@ end
 function love.draw()
     Map.Draw()
     overlay:Draw()
+	arrow:Draw()
     player:Draw()
 end
 
