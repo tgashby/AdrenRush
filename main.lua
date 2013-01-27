@@ -19,23 +19,23 @@ require("arrow")
 function love.load()
     -- Load everything you need!
 	levels = {
-	"levele1.png", 
-  	"levele1.png",
-  	"levele2.png",
-  	"levele3.png",
-  	"levele3A.png",
-  	"levele4.png",
-  	"levele5.png",
-  	"levele6.png",
-  	"levele7.png",
-  	"levels1.png",
-  	"levels2.png",
-  	"levels3.png",
-  	"levels4.png",
-  	"levels5.png",
-  	"levels6.png",
-  	"levels7.png",
-  	"levels8.png"
+	"basic.png", 
+	"levele1.png",
+	"levele2.png",
+	"levele3.png",
+	"levele3A.png",
+	"levele4.png",
+	"levele5.png",
+	"levele6.png",
+	"levele7.png",
+	"levels1.png",
+	"levels2.png",
+	"levels3.png",
+	"levels4.png",
+	"levels5.png",
+	"levels6.png",
+	"levels7.png",
+	"levels8.png"
 	}
 	for i, v in ipairs(levels) do
 		   Map.GenerateLevel(Globals.LEVELS_DIR .. v)
@@ -59,18 +59,36 @@ function love.load()
 		false
 	}
 	arrow = Arrow()
+	exitImage = love.graphics.newImage(Globals.IMAGE_DIR .. "exit.png")
 end
 
 function love.update(dt)
     Timer.update(dt)
     player:Update(dt)
     Map.Update(dt)
+
+    if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+        player.nextDir = "up"
+    end
+
+    if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
+        player.nextDir = "left"
+    end
+
+    if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
+        player.nextDir = "right"
+    end
+
+    if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+        player.nextDir = "down"
+    end
 end
 
 function love.draw()
     Map.Draw()
     overlay:Draw()
 	arrow:Draw()
+	love.graphics.draw(exitImage, Map.levels[Map.currentLevel].ending.x, Map.levels[Map.currentLevel].ending.y) 
     player:Draw()
 end
 
@@ -78,21 +96,7 @@ function love.keypressed(key, unicode)
     -- Called when a key is pressed
     -- key - 'a', 'b', etc, list available at https://love2d.org/wiki/KeyConstant
     -- unicode - the unicode value of the key pressed
-    if key == "w" or key == "up" then
-        player.nextDir = "up"
-    end
-
-    if key == "a" or key == "left" then
-        player.nextDir = "left"
-    end
-
-    if key == "d" or key == "right" then
-        player.nextDir = "right"
-    end
-
-    if key == "s" or key == "down" then
-        player.nextDir = "down"
-    end
+    
 	if key == " " then
 		player.showInvent = true
 	end

@@ -134,6 +134,8 @@ function Player:Move()
     else
 	   Map.Reset()
 	end
+    
+   self.leftHandForward = not self.leftHandForward
 end
 
 function Player:Reset()

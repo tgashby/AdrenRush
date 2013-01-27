@@ -8,6 +8,9 @@ Barrier = Class{inherits = Tile,
 		Tile.construct(self, img, Vector2D(x, y), "floor")
 
 		self.barrierImage = love.graphics.newImage(Globals.IMAGE_DIR .. "barrier_Phase1.png")
+		self.altBarrierImage = love.graphics.newImage(Globals.IMAGE_DIR .. "barrier_Phase2.png")
+
+		self.useAltImg = false
 
 		self.dir = id == 1 and Vector2D(0, -1) or Vector2D(-1, 0)
 		self.lastUpdate = 0
@@ -17,7 +20,9 @@ Barrier = Class{inherits = Tile,
 
 function Barrier:Draw()
 	love.graphics.draw(self.image, self.startPos.x, self.startPos.y)
-	love.graphics.draw(self.barrierImage, self.position.x, self.position.y)
+
+	local image = self.useAltImg and self.barrierImage or self.altBarrierImage
+	love.graphics.draw(image, self.position.x, self.position.y)
 end
 
 function Barrier:Update(dt)
@@ -40,6 +45,7 @@ function Barrier:Update(dt)
 		if wall or door then
 			if wall and not wallTile.penetrable or door then
 				self.dir = -1 * self.dir
+				self.useAltImg = not self.useAltImg
 			end
 		end
 
