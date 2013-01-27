@@ -38,16 +38,19 @@ function Map.GenerateLevel(levelFile)
 			elseif r == 255 and g == 220 and b == 220 then
 				level:AddTile(tileX, tileY, r, "ending")
 			else
+				print(levelfile)
 				print("UNKNOWN PIXEL TYPE: ", r, g, b)
 			end
 		end
 	end
 
 	if not level.beginning then
+		print(levelfile)
 		print("NO STARTING TILE")
 	end
 
 	if not level.ending then
+		print(levelfile)
 		print("NO ENDING TILE")
 	end
 
@@ -58,6 +61,12 @@ function Map.CollidesWith(type, objectPos)
 	return Map.levels[Map.currentLevel].tiles[Globals.SCREEN_WIDTH_TILES * objectPos.y / Globals.SCREEN_WIDTH_TILES + 
 	(objectPos.x / Globals.SCREEN_WIDTH_TILES + 1)].type == type, Map.levels[Map.currentLevel].tiles[Globals.SCREEN_WIDTH_TILES * objectPos.y / Globals.SCREEN_WIDTH_TILES + 
 	(objectPos.x / Globals.SCREEN_WIDTH_TILES + 1)]
+end
+
+function Map.nextLevel()
+	Map.currentLevel = Map.currentLevel + 1
+	player.position = Map.levels[Map.currentLevel].beginning
+	player:Reset()
 end
 
 function Map.Draw()
@@ -77,4 +86,5 @@ function Map.Reset()
 	table.remove(Map.levels, Map.currentLevel)
 	Map.GenerateLevel(filename)
 	player.position = Map.levels[Map.currentLevel].beginning
+	player:Reset()
 end
