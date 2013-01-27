@@ -28,15 +28,15 @@ end
 
 function Instructions:enter(previous)
     levels = {
-    "basic.png", 
+--    "basic.png", 
     "levele1.png",
-    "levele2.png",
-    "levele3.png",
-    "levele3A.png",
+--    "levele2.png",
+--    "levele3.png",
+--    "levele3A.png",
     "levele4.png",
     "levele5.png",
-    "levele6.png",
-    "levele7.png",
+--    "levele6.png",
+--    "levele7.png",
     "levels1.png",
     "levels2.png",
     "levels3.png",
