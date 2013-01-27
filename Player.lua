@@ -11,7 +11,7 @@ Player = Class {inherits = Tile,
         self.heartRate = 60
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
-		self.inventory = main.inventory
+		self.inventory = {} 
     end
 }
 

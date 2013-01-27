@@ -37,6 +37,7 @@ end
 function love.update(dt)
     Timer.update(dt)
     player:Update(dt)
+    Map.Update(dt)
 end
 
 function love.draw()

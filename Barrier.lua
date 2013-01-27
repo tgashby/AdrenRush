@@ -11,11 +11,12 @@ Barrier = Class{inherits = Tile,
 
 		self.dir = id == 1 and Vector2D(0, -1) or Vector2D(-1, 0)
 		self.lastUpdate = 0
+		self.startPos = Vector2D(x, y)
 	end
 }
 
 function Barrier:Draw()
-	love.graphics.draw(self.image, self.position.x, self.position.y)
+	love.graphics.draw(self.image, self.startPos.x, self.startPos.y)
 	love.graphics.draw(self.barrierImage, self.position.x, self.position.y)
 end
 
@@ -24,14 +25,24 @@ function Barrier:Update(dt)
 
 	if self.lastUpdate > 0.5 then
 		self.position = self.position + self.dir
-		local wall, wallTile = Map.CollidesWith("wall", Vector2D(math.ceil(self.position.x / Globals.TILE_SIZE) * Globals.TILE_SIZE, math.ceil(self.position.y / Globals.TILE_SIZE) * Globals.TILE_SIZE))
-		local door = Map.CollidesWith("door", Vector2D(math.ceil(self.position.x / Globals.TILE_SIZE) * Globals.TILE_SIZE, math.ceil(self.position.y / Globals.TILE_SIZE) * Globals.TILE_SIZE))
+		local snappedVec = Vector2D(math.floor(self.position.x / Globals.TILE_SIZE) * 
+			Globals.TILE_SIZE, math.floor(self.position.y / Globals.TILE_SIZE) * Globals.TILE_SIZE)
+
+		if self.dir.y == 1 then
+			snappedVec.y = math.ceil(self.position.y / Globals.TILE_SIZE) * Globals.TILE_SIZE
+		elseif self.dir.x == 1 then
+			snappedVec.x = math.ceil(self.position.x / Globals.TILE_SIZE) * Globals.TILE_SIZE
+		end
+
+		local wall, wallTile = Map.CollidesWith("wall", snappedVec)
+		local door = Map.CollidesWith("door", snappedVec)
 
 		if wall or door then
 			if wall and not wallTile.penetrable or door then
 				self.dir = -1 * self.dir
 			end
 		end
+
 		if player.position:dist(self.position) < Globals.TILE_SIZE then
 			--reset
 		end

@@ -8,6 +8,7 @@ Part = Class{inherits = Tile,
       Tile.construct(self, img, Vector2D(x, y), "part")
 	end
 }
+
 function Part:usePart()
 
 end

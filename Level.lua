@@ -5,6 +5,7 @@ require('Tile')
 Level = Class{
     function (self)
         self.tiles = {}
+        self.barriers = {}
         self.beginning = nil
         self.ending = nil
         self.Spawn = {
@@ -25,6 +26,7 @@ Level = Class{
             end,
             barrier = function (x, y, id)
                 self.tiles[#self.tiles + 1] = Barrier(x, y, id)
+                self.barriers[#self.barriers + 1] = self.tiles[#self.tiles]
             end,
             barrierdestroyer = function (x, y, id)
                 self.tiles[#self.tiles + 1] = BarrierDestroyer(x, y, id)
@@ -49,15 +51,19 @@ function Level:AddTile(x, y, id, name)
 end
 
 function Level:Draw()
+    local barriers = {}
     for i,v in ipairs(self.tiles) do
         v:Draw()
         -- love.graphics.setColor(0, 255, 0, 255)
         -- love.graphics.print(tostring(i), v.position.x, v.position.y)
         -- love.graphics.setColor(255, 255, 255, 255)
     end
+
+    for i,v in ipairs(self.barriers) do
+        v:Draw()
+    end
 end
 function Level:Update(dt)
-    print(dt)
     for i,v in ipairs(self.tiles) do
         if v.Update then
             v:Update(dt)
