@@ -28,7 +28,7 @@ end
 
 function Instructions:enter(previous)
     levels = {
-    "levels11.png",
+    --"levels11.png",
     "levels12.png",
     "levels13.png",
     "basic.png", 
