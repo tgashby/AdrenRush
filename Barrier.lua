@@ -51,7 +51,7 @@ function Barrier:Update(dt)
 
 		if player.position:dist(self.position) < Globals.TILE_SIZE * 3 / 4 then
 			Map.Reset()
-			self.lives = self.lives - 1
+			player.lives = player.lives - 1
 		end
 	end
 end
