@@ -55,6 +55,11 @@ function Map.GenerateLevel(levelFile)
 end
 
 function Map.CollidesWith(type, objectPos)
+	if Globals.SCREEN_WIDTH_TILES * objectPos.y / Globals.SCREEN_WIDTH_TILES + 
+	 (objectPos.x / Globals.SCREEN_WIDTH_TILES + 1) > #Map.levels[Map.currentLevel].tiles then
+		return true
+	end
+
 	return Map.levels[Map.currentLevel].tiles[Globals.SCREEN_WIDTH_TILES * objectPos.y / Globals.SCREEN_WIDTH_TILES + 
 	(objectPos.x / Globals.SCREEN_WIDTH_TILES + 1)].type == type, Map.levels[Map.currentLevel].tiles[Globals.SCREEN_WIDTH_TILES * objectPos.y / Globals.SCREEN_WIDTH_TILES + 
 	(objectPos.x / Globals.SCREEN_WIDTH_TILES + 1)]

@@ -139,6 +139,9 @@ function Player:Move()
     else
 	   Map.Reset()
 	   self.lives = self.lives - 1
+		if self.position == Map.levels[Map.currentLevel].beginning then
+			self.lives = self.lives + 1
+		end
 	end
     
    self.leftHandForward = not self.leftHandForward

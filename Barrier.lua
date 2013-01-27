@@ -40,10 +40,10 @@ function Barrier:Update(dt)
 		end
 
 		local wall, wallTile = Map.CollidesWith("wall", snappedVec)
-		local door = Map.CollidesWith("door", snappedVec)
+		local door, doorTile = Map.CollidesWith("door", snappedVec)
 
 		if wall or door then
-			if wall and not wallTile.penetrable or door then
+			if wall and not wallTile.penetrable or door and not doorTile.closed then
 				self.dir = -1 * self.dir
 				self.useAltImg = not self.useAltImg
 			end
@@ -51,6 +51,7 @@ function Barrier:Update(dt)
 
 		if player.position:dist(self.position) < Globals.TILE_SIZE * 3 / 4 then
 			Map.Reset()
+			self.lives = self.lives - 1
 		end
 	end
 end
