@@ -10,9 +10,10 @@ Key = Class{inherits = Tile,
 	    self.keyVal = id
     end
 }
+
 function Key:useKey()
 	if not self.used then
-		Map:openDoors(self.keyVal)
+		Map.openDoors(self.keyVal)
 		self.used = true
 		self.image = love.graphics.newImage(Globals.IMAGE_DIR .. "floor_0.png")
 	end
