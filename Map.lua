@@ -69,5 +69,5 @@ function Map.Update(dt)
 end
 
 function Map.Reset()
-	Map.generateLevel(Map.file)
+	Map.GenerateLevel(Map.file)
 end
