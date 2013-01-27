@@ -131,11 +131,8 @@ function Player:Move()
         self.dir = self.nextDir
         self.nextDir = ""
     else
+    	self.lives = self.lives - 1
 	   Map.Reset()
-	   self.lives = self.lives - 1
-		if self.position == Map.levels[Map.currentLevel].beginning then
-			self.lives = self.lives + 1
-		end
 	end
     
    self.leftHandForward = not self.leftHandForward
