@@ -12,6 +12,7 @@ Player = Class {inherits = Tile,
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
 		self.inventory = {} 
+		self.heartSound = love.audio.newSource("Music/pulse1.wav")
     end
 }
 
@@ -26,6 +27,7 @@ function Player:Update(dt)
 
     if self.beatPercent >= 1 then
         self:Move()
+		love.audio.newSource("Music/pulse1.wav", "static"):play()
         onPart, part = Map.CollidesWith("part", self.position)
 		if onPart then
 			part:usePart()
@@ -42,11 +44,13 @@ function Player:Update(dt)
 			Map:nextLevel()
 		end
         self.beatPercent = 0
+		
     end
 
     if self.beatIncreaseTimer > 1 then
         self.heartRate = self.heartRate + 2
         self.beatIncreaseTimer = 0
+		
     end
 	if self.heartRate > 240 then
 		Map:Reset()

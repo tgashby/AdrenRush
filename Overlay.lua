@@ -10,6 +10,6 @@ Overlay = Class{
 
 function Overlay:Draw()
 	love.graphics.draw(self.image, player.position.x + player.image:getWidth() / 2, player.position.y + player.image:getHeight() / 2, 
-		0, 3 - player.beatPercent * 2, 3 - player.beatPercent * 2, self.image:getWidth() / 2, self.image:getHeight() / 2)
+		0, 4.5 - player.beatPercent * 3.5, 4.5 - player.beatPercent * 3.5, self.image:getWidth() / 2, self.image:getHeight() / 2)
 end
 

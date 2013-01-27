@@ -79,5 +79,7 @@ end
 
 function Map.Reset()
 	local filename = Map.file
-	Map.GenerateLevel(Map.file)
+	table.remove(Map.levels, Map.currentLevel)
+	Map.GenerateLevel(filename)
+	player.position = Map.levels[Map.currentLevel].beginning
 end
