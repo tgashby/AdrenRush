@@ -21,17 +21,9 @@ Player = Class {inherits = Tile,
 			false,
 			false,
 			false,
-			false,
-			false,
-			false,
-			false,
 			false
 		}
 		self.tempInventory = {
-			false,
-			false,
-			false,
-			false,
 			false,
 			false,
 			false,
@@ -86,6 +78,7 @@ function Player:Update(dt)
 				self.inventory[i] = v
 			end
 			Map.nextLevel()
+			self.lives = 10
 		end
         self.beatPercent = 0
 		
@@ -99,6 +92,7 @@ function Player:Update(dt)
 
 	if self.heartRate > 240 then
 		Map.Reset()
+		self.lives = self.lives - 1
 	end
 end
 
