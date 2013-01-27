@@ -31,7 +31,7 @@ function Player:Update(dt)
 		end
 		onCons, cons = Map.CollidesWith("consumable", self.position)
 		if onCons then
-			cons:useConsumable()
+			cons:UseConsumable()
 		end
         self.beatPercent = 0
     end
