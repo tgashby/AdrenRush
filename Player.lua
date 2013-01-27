@@ -48,10 +48,14 @@ function Player:Draw()
         self.image:getWidth() / 2, self.image:getHeight() / 2)
 	if self.showInvent then
 		for i, v in ipairs(self.tempInventory) do
+			local img = Globals.IMAGE_DIR .. "part_" .. i .. "z.png"
+			local image = love.graphics.newImage(img)
 			if self.tempInventory[i] then
-				local img = Globals.IMAGE_DIR .. "part_" .. i .. ".png"
-				local image = love.graphics.newImage(img)
 				love.graphics.draw(image, 32 + 48 * i, 64)
+			else
+				love.graphics.setColor(255, 255, 255, 25)
+				love.graphics.draw(image, 32 + 48 * i, 64)
+				love.graphics.setColor(255, 255, 255, 255)
 			end
 		end
 	end
