@@ -53,7 +53,7 @@ function Player:Draw()
 			if self.tempInventory[i] then
 				love.graphics.draw(image, 32 + 48 * i, 64)
 			else
-				love.graphics.setColor(255, 255, 255, 25)
+				love.graphics.setColor(255, 255, 255, 75)
 				love.graphics.draw(image, 32 + 48 * i, 64)
 				love.graphics.setColor(255, 255, 255, 255)
 			end

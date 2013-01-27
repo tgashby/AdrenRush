@@ -21,31 +21,7 @@ require("arrow")
 local PlayState = GameState.new()
 
 function PlayState:init()	
-    -- Load everything you need!
-	levels = {
-	"basic.png", 
-	"levele1.png",
-	"levele2.png",
-	"levele3.png",
-	"levele3A.png",
-	"levele4.png",
-	"levele5.png",
-	"levele6.png",
-	"levele7.png",
-	"levels1.png",
-	"levels2.png",
-	"levels3.png",
-	"levels4.png",
-	"levels5.png",
-	"levels6.png",
-	"levels7.png",
-	"levels8.png"
-	}
-	for i, v in ipairs(levels) do
-	   Map.GenerateLevel(Globals.LEVELS_DIR .. v)
-	end
-
-	music = love.audio.newSource("Music/Adr loop NO PULSE.wav")
+    music = love.audio.newSource("Music/Adr loop NO PULSE.wav")
 	music:setLooping(true)
 	music:setVolume(.3)
 	love.audio.play(music)
@@ -94,6 +70,7 @@ function PlayState:draw()
 	arrow:Draw()
 	love.graphics.draw(exitImage, Map.levels[Map.currentLevel].ending.x, Map.levels[Map.currentLevel].ending.y) 
     player:Draw()
+    love.graphics.print(player.heartRate .. " / 240 BPM", 930, 740)
 end
 
 function PlayState:keypressed(key, unicode)
