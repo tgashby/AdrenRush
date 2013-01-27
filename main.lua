@@ -91,6 +91,9 @@ function love.keypressed(key, unicode)
     if key == "s" or key == "down" then
         player.nextDir = "down"
     end
+	if key == " " then
+		player.showInvent = true
+	end
 end
 
 function love.keyreleased(key, unicode)
@@ -98,4 +101,7 @@ function love.keyreleased(key, unicode)
     if key == "escape" then
       love.event.push("quit")
     end
+	if key == " " then
+		player.showInvent = false;
+	end
 end
