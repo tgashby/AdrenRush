@@ -116,7 +116,9 @@ function Player:Move()
 
         self.dir = self.nextDir
         self.nextDir = ""
-    end
+    else
+	Map.Reset()
+	end
 end
 
 function Player:Reset()
