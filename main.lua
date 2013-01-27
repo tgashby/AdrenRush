@@ -40,7 +40,10 @@ function love.load()
 	for i, v in ipairs(levels) do
 		   Map.GenerateLevel(Globals.LEVELS_DIR .. v)
 	end
-
+	music = love.audio.newSource("Music/Adr loop NO PULSE.wav")
+	music:setLooping(true)
+	music:setVolume(.3)
+	love.audio.play(music)
     player = Player(Globals.IMAGE_DIR .. "player.png", Map.levels[Map.currentLevel].beginning)
     overlay = Overlay()
 	inventory = {
@@ -56,7 +59,6 @@ function love.load()
 		false
 	}
 	arrow = Arrow()
-	
 end
 
 function love.update(dt)
@@ -91,6 +93,9 @@ function love.keypressed(key, unicode)
     if key == "s" or key == "down" then
         player.nextDir = "down"
     end
+	if key == " " then
+		player.showInvent = true
+	end
 end
 
 function love.keyreleased(key, unicode)
@@ -98,4 +103,7 @@ function love.keyreleased(key, unicode)
     if key == "escape" then
       love.event.push("quit")
     end
+	if key == " " then
+		player.showInvent = false;
+	end
 end

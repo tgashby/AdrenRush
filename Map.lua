@@ -8,7 +8,7 @@ Map = {
 
 function Map.GenerateLevel(levelFile)
 	local levelData = love.image.newImageData(levelFile)
-	local level = Level()
+	local level = Level(levelFile)
 	Map.file = levelFile
 	for y = 0, Globals.SCREEN_HEIGHT_TILES - 1 do
 		for x = 0, Globals.SCREEN_WIDTH_TILES - 1 do
@@ -38,20 +38,17 @@ function Map.GenerateLevel(levelFile)
 			elseif r == 255 and g == 220 and b == 220 then
 				level:AddTile(tileX, tileY, r, "ending")
 			else
-				print(levelfile)
-				print("UNKNOWN PIXEL TYPE: ", r, g, b)
+				print(levelFile, "UNKNOWN PIXEL TYPE: ", r, g, b)
 			end
 		end
 	end
 
 	if not level.beginning then
-		print(levelfile)
-		print("NO STARTING TILE")
+		print(levelFile, "NO STARTING TILE")
 	end
 
 	if not level.ending then
-		print(levelfile)
-		print("NO ENDING TILE")
+		print(levelFile, "NO ENDING TILE")
 	end
 
 	Map.levels[#Map.levels + 1] = level
@@ -85,6 +82,8 @@ function Map.Reset()
 	local filename = Map.file
 	table.remove(Map.levels, Map.currentLevel)
 	Map.GenerateLevel(filename)
+	table.insert(Map.levels, Map.currentLevel, Map.levels[#Map.levels])
+	table.remove(Map.levels, #Map.levels)
 	player.position = Map.levels[Map.currentLevel].beginning
 	player:Reset()
 end

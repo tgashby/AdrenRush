@@ -11,7 +11,8 @@ Player = Class {inherits = Tile,
         self.heartRate = 60
         self.beatPercent = 0
         self.beatIncreaseTimer = 0
-		self.inventory = {} 
+        self.leftHandForward = false
+        self.altImage = love.graphics.newImage(Globals.IMAGE_DIR .. "player_2.png")
 		self.heartSound = love.audio.newSource("Music/pulse1.wav")
 		self.inventory = {
 			false,
@@ -37,18 +38,26 @@ Player = Class {inherits = Tile,
 			false,
 			false
 		}
+		self.showInvent = false;
     end
 }
 
 function Player:Draw()
-    love.graphics.draw(self.image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
+    local image = self.leftHandForward and self.image or self.altImage
+    love.graphics.draw(image, self.position.x + 16, self.position.y + 16, math.rad(90 * self.directions[self.dir]), 1, 1, 
         self.image:getWidth() / 2, self.image:getHeight() / 2)
+	if self.showInvent then
+		for i, v in tempInventory do
+			local img = Globals.IMAGE_DIR .. "part_" .. i .. ".png"
+			love.grapics.draw(image, 32 + 48 * i, 64)
+		end
+	end
 end
 
 function Player:Update(dt)
     self.beatPercent = self.beatPercent + self.heartRate * dt / 60
     self.beatIncreaseTimer = self.beatIncreaseTimer + dt
-
+	
     if self.beatPercent >= 1 then
         self:Move()
 		love.audio.newSource("Music/pulse1.wav", "static"):play()
@@ -66,7 +75,7 @@ function Player:Update(dt)
 		end
 		if self.position == Map.levels[Map.currentLevel].ending then
 			self.inventory = self.tempInventory
-			Map:nextLevel()
+			Map.nextLevel()
 		end
         self.beatPercent = 0
 		
@@ -77,8 +86,9 @@ function Player:Update(dt)
         self.beatIncreaseTimer = 0
 		
     end
+
 	if self.heartRate > 240 then
-		Map:Reset()
+		Map.Reset()
 	end
 end
 
@@ -116,7 +126,9 @@ function Player:Move()
 
         self.dir = self.nextDir
         self.nextDir = ""
-    end
+    else
+	   Map.Reset()
+	end
 end
 
 function Player:Reset()
