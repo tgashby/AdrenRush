@@ -93,3 +93,10 @@ function Player:Move()
         self.nextDir = ""
     end
 end
+
+function Player:Reset()
+    self.heartRate = 60
+    self.beatPercent = 0
+    self.beatIncreaseTimer = 0
+    self.dir = "up"
+end

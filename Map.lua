@@ -82,4 +82,5 @@ function Map.Reset()
 	table.remove(Map.levels, Map.currentLevel)
 	Map.GenerateLevel(filename)
 	player.position = Map.levels[Map.currentLevel].beginning
+	player:Reset()
 end
