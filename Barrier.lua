@@ -43,7 +43,7 @@ function Barrier:Update(dt)
 		local door, doorTile = Map.CollidesWith("door", snappedVec)
 
 		if wall or door then
-			if wall and not wallTile.penetrable or door and not doorTile.closed then
+			if wall and not wallTile.penetrable or door and doorTile.closed then
 				self.dir = -1 * self.dir
 				self.useAltImg = not self.useAltImg
 			end
